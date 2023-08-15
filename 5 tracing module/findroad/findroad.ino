@@ -1,29 +1,29 @@
-int data[2];
+#define AOLPin   A4                         //外接光敏引脚 32
+#define DOLPin   4 
+#define AORPin   A5                         //外接光敏引脚 33
+#define DORPin   5 
+#define ledPin 2
 void setup() {
-  pinMode(9,INPUT);//LD
-  pinMode(12,INPUT);//RD
-  pinMode(A0,INPUT);//LA
-  pinMode(A1,INPUT);//RA
-  Serial.begin(9600);
+  pinMode(AOLPin,INPUT);
+  pinMode(AORPin,INPUT);
+  analogReadResolution(9);    //分辨率设置
+    pinMode(DOLPin,INPUT);
+    pinMode(DORPin,INPUT);
+  pinMode(ledPin,OUTPUT);
+  Serial.begin(115200);
 }
 
 void loop() {
-distanceonD();
-}
-
-void distanceonD(){
-  data[0] = digitalRead(9);
-  data[1] = digitalRead(12);
-  if(data[0] && data[1]){
-    Serial.println("stop");
-  }
-  if(!data[0] && !data[1]){
-    Serial.println("go");
-  }
-  if(!data[0] && data[1]){
-    Serial.println("right");
-  }
-  if(data[0] && !data[1]){
-    Serial.println("left");
-  }
+  Serial.print("LEFT AO:");
+  Serial.print(analogRead(AOLPin));
+  Serial.print("  LEFT DO:");
+  Serial.println(digitalRead(DOLPin));
+  
+  Serial.print("RIGHT AO:");
+  Serial.print(analogRead(AORPin));
+  Serial.print("  RIGHT DO:");
+  Serial.println(digitalRead(DORPin));
+  
+  Serial.println();
+  delay(500);
 }

@@ -1,17 +1,21 @@
 int x,y,sw;
 void setup() {
-  pinMode(A0,INPUT);
-  pinMode(A1,INPUT);
+  pinMode(32,INPUT);
+  pinMode(33,INPUT);
   pinMode(4,INPUT);
+  pinMode(2,OUTPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  x = analogRead(A0);
-  y = analogRead(A1);
+  x = analogRead(32);
+  y = analogRead(33);
   sw = digitalRead(4);
   if(sw){
-    digitalWrite(13,HIGH);
+    digitalWrite(2,HIGH);
+  }
+  else{
+    digitalWrite(2,LOW);
   }
   Serial.print("x:");
   Serial.println(x);

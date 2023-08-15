@@ -1,14 +1,18 @@
-void setup() {
-  pinMode(8,INPUT);//触摸模块连接8引脚，并为输入模块
-  pinMode(9,OUTPUT);//LED连接9引脚，并为输出模块
-}
+#define LEDPin   2                         //外接led引脚
+#define touchPin   13                         //外接触摸引脚
 
+void setup() {
+  pinMode(LEDPin, OUTPUT);//led是输出
+  pinMode(touchPin, INPUT);//触摸是输入
+
+}
+ 
 void loop() {
-  int state = digitalRead(8);//读取触摸模块电平
-  if(state){//判断触摸模块电平高低
-    digitalWrite(9,HIGH);//LED亮
+  if(digitalRead(touchPin)){
+     digitalWrite(LEDPin, HIGH); 
   }
   else{
-    digitalWrite(9,LOW);//LED灭
+    digitalWrite(LEDPin, LOW); 
   }
 }
+ 

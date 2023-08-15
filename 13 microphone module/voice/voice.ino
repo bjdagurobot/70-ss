@@ -1,22 +1,23 @@
+const int voiceAO = 32;
+const int voiceDO = 4;
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(2,INPUT);
-  pinMode(A0,INPUT);
-  pinMode(11, OUTPUT);
+  Serial.begin(115200);
+  pinMode(voiceAO,INPUT);
+  pinMode(voiceDO,INPUT);
+  pinMode(2,OUTPUT);
+
 }
 
 void loop() {
- int astate = analogRead(A0);
-  int dstate = digitalRead(2);
-  if(dstate==0){
-    Serial.print("数字接口：");
-    Serial.println(dstate);
-    Serial.print("模拟接口：");
-    Serial.println(astate);
-    analogWrite(11,(map(astate, 1, 1023, 1, 255)));
+  // put your main code here, to run repeatedly:
+  int x = analogRead(voiceAO);
+  Serial.println(x);
+  if(digitalRead(voiceDO)==1){
+    digitalWrite(2,HIGH);
   }
-else {
-    digitalWrite(11,LOW);
+  else{
+    digitalWrite(2,LOW);
   }
+  delay(50);
 }
